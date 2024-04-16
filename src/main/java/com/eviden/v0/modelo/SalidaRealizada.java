@@ -11,7 +11,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Component
 @Scope(value="prototype")
@@ -22,10 +25,14 @@ public class SalidaRealizada {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idSalida;
 	@Column
-	private Date fecha_salida;
 	private String destino;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fecha_salida;
 	@Embedded
 	private UsuarioClubNautico usuario;
+	
+	@JoinColumn(name = "fk_matricula_embarcacion", referencedColumnName = "matricula")
+	private Embarcacion embarcacion;
 
 	public Integer getIdSalida() {
 		return idSalida;

@@ -5,11 +5,14 @@ import java.util.List;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Component
@@ -25,7 +28,11 @@ public class Embarcacion {
 	private Integer numero_amarre;
 	private Double cuota;
 	
+	@OneToMany(mappedBy = "embarcacion", cascade=CascadeType.PERSIST)
 	private List<SalidaRealizada> salidas;
+	
+	@JoinColumn(name = "fk_id_socio", referencedColumnName = "idSocio")
+	private SocioClubNautico socio;
 	
 	public String getMatricula() {
 		return matricula;
