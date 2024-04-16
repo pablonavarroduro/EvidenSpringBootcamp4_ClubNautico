@@ -7,5 +7,5 @@ import com.eviden.v0.modelo.SocioClubNautico;
 
 @Repository
 public interface RepositorioClubNauticoH2 extends JpaRepository<SocioClubNautico, Integer> {
-
+	
 }

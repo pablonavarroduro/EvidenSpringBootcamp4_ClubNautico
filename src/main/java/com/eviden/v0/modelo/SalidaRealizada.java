@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -16,23 +17,38 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
-@Component
-@Scope(value="prototype")
+
 @Entity
 @Table(name = "Salidas")
 public class SalidaRealizada {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "id_salida")
 	private Integer idSalida;
 	@Column
 	private String destino;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha_salida;
+	@Nonnull
 	@Embedded
 	private UsuarioClubNautico usuario;
-	
+	@Nonnull
 	@JoinColumn(name = "fk_matricula_embarcacion", referencedColumnName = "matricula")
 	private Embarcacion embarcacion;
+	
+	public SalidaRealizada() {
+		
+	}
+	
+	public SalidaRealizada(Integer idSalida, String destino, Date fecha_salida, UsuarioClubNautico usuario,
+			Embarcacion embarcacion) {
+		super();
+		this.idSalida = idSalida;
+		this.destino = destino;
+		this.fecha_salida = fecha_salida;
+		this.usuario = usuario;
+		this.embarcacion = embarcacion;
+	}
 
 	public Integer getIdSalida() {
 		return idSalida;
@@ -65,5 +81,13 @@ public class SalidaRealizada {
 	public void setUsuario(UsuarioClubNautico usuario) {
 		this.usuario = usuario;
 	}
+
+	@Override
+	public String toString() {
+		return "SalidaRealizada [idSalida=" + idSalida + ", destino=" + destino + ", fecha_salida=" + fecha_salida
+				+ ", usuario=" + usuario.toString() + "]";
+	}
+	
+	
 
 }

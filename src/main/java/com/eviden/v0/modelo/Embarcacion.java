@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,8 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-@Component
-@Scope(value="prototype")
+
 @Entity
 @Table(name = "Embarcaciones")
 public class Embarcacion {
@@ -30,10 +30,25 @@ public class Embarcacion {
 	
 	@OneToMany(mappedBy = "embarcacion", cascade=CascadeType.PERSIST)
 	private List<SalidaRealizada> salidas;
-	
+	@Nonnull
 	@JoinColumn(name = "fk_id_socio", referencedColumnName = "idSocio")
 	private SocioClubNautico socio;
 	
+	public Embarcacion() {
+		
+	}
+	
+	public Embarcacion(String matricula, String nombre, Integer numero_amarre, Double cuota,
+			List<SalidaRealizada> salidas, SocioClubNautico socio) {
+		super();
+		this.matricula = matricula;
+		this.nombre = nombre;
+		this.numero_amarre = numero_amarre;
+		this.cuota = cuota;
+		this.salidas = salidas;
+		this.socio = socio;
+	}
+
 	public String getMatricula() {
 		return matricula;
 	}
@@ -73,6 +88,14 @@ public class Embarcacion {
 	public void setSalidas(List<SalidaRealizada> salidas) {
 		this.salidas = salidas;
 	}
+
+	@Override
+	public String toString() {
+		return "Embarcacion [matricula=" + matricula + ", nombre=" + nombre + ", numero_amarre=" + numero_amarre
+				+ ", cuota=" + cuota + ", salidas=" + salidas.toString() + "]";
+	}
+	
+	
 
 	
 }

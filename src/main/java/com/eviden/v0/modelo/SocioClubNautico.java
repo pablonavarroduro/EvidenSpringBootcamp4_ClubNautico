@@ -14,14 +14,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-@Component
-@Scope(value="prototype")
 @Entity
 @Table(name = "Socios")
 public class SocioClubNautico {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@Column(name = "id")
 	private Integer idSocio;
+	
 	@Column	
 	private String nombre;
 	private String primerApellido;
@@ -30,11 +30,23 @@ public class SocioClubNautico {
 	@OneToMany(mappedBy = "socio", cascade=CascadeType.PERSIST)
 	private List<Embarcacion> barcos_en_propiedad;
 	
+	public SocioClubNautico() {
+		
+	}
 	
-	public int getIdSocio() {
+	public SocioClubNautico(Integer idSocio, String nombre, String primerApellido, String segundoApellido,
+			List<Embarcacion> barcos_en_propiedad) {
+		super();
+		this.idSocio = idSocio;
+		this.nombre = nombre;
+		this.primerApellido = primerApellido;
+		this.segundoApellido = segundoApellido;
+		this.barcos_en_propiedad = barcos_en_propiedad;
+	}
+	public Integer getIdSocio() {
 		return idSocio;
 	}
-	public void setIdSocio(int idSocio) {
+	public void setIdSocio(Integer idSocio) {
 		this.idSocio = idSocio;
 	}
 	public String getNombre() {
@@ -60,6 +72,11 @@ public class SocioClubNautico {
 	}
 	public void setBarcos_en_propiedad(List<Embarcacion> barcos_en_propiedad) {
 		this.barcos_en_propiedad = barcos_en_propiedad;
+	}
+	@Override
+	public String toString() {
+		return "SocioClubNautico [idSocio=" + idSocio + ", nombre=" + nombre + ", primerApellido=" + primerApellido
+				+ ", segundoApellido=" + segundoApellido + ", barcos_en_propiedad=" + barcos_en_propiedad.toString() + "]";
 	}
 	
 }
