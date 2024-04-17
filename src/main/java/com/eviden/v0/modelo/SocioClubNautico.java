@@ -2,12 +2,10 @@ package com.eviden.v0.modelo;
 
 import java.util.List;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,7 +25,7 @@ public class SocioClubNautico {
 	private String primerApellido;
 	private String segundoApellido;
 	
-	@OneToMany(mappedBy = "socio", cascade=CascadeType.PERSIST)
+	@OneToMany(mappedBy = "socio", cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
 	private List<Embarcacion> barcos_en_propiedad;
 	
 	public SocioClubNautico() {

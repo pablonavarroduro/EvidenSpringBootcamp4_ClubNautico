@@ -9,7 +9,9 @@ public class UsuarioClubNautico {
 	private String primerApellido;
 	private String segundoApellido;
 	
-	
+	public UsuarioClubNautico() {
+		
+	}
 	
 	public UsuarioClubNautico(String dNI, String nombre, String primerApellido, String segundoApellido) {
 		super();

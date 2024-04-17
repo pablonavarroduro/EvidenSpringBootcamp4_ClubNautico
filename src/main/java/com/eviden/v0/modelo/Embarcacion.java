@@ -2,9 +2,6 @@ package com.eviden.v0.modelo;
 
 import java.util.List;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -13,15 +10,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 
 @Entity
-@Table(name = "Embarcaciones")
+@Table(name = "Embarcaciones", uniqueConstraints = @UniqueConstraint(columnNames = "nombre"))
 public class Embarcacion {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id	
 	private String matricula;
 	@Column
 	private String nombre;
@@ -31,7 +29,8 @@ public class Embarcacion {
 	@OneToMany(mappedBy = "embarcacion", cascade=CascadeType.PERSIST)
 	private List<SalidaRealizada> salidas;
 	@Nonnull
-	@JoinColumn(name = "fk_id_socio", referencedColumnName = "idSocio")
+	@ManyToOne
+	@JoinColumn(name = "fk_id_socio", referencedColumnName = "id")
 	private SocioClubNautico socio;
 	
 	public Embarcacion() {

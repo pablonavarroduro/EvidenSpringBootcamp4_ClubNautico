@@ -2,9 +2,6 @@ package com.eviden.v0.modelo;
 
 import java.util.Date;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -13,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -29,10 +27,12 @@ public class SalidaRealizada {
 	private String destino;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha_salida;
+	
 	@Nonnull
 	@Embedded
 	private UsuarioClubNautico usuario;
 	@Nonnull
+	@ManyToOne
 	@JoinColumn(name = "fk_matricula_embarcacion", referencedColumnName = "matricula")
 	private Embarcacion embarcacion;
 	
@@ -80,6 +80,15 @@ public class SalidaRealizada {
 
 	public void setUsuario(UsuarioClubNautico usuario) {
 		this.usuario = usuario;
+	}	
+	
+
+	public Embarcacion getEmbarcacion() {
+		return embarcacion;
+	}
+
+	public void setEmbarcacion(Embarcacion embarcacion) {
+		this.embarcacion = embarcacion;
 	}
 
 	@Override
