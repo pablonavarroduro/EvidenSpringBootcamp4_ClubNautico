@@ -28,7 +28,7 @@ public interface RepositorioClubNauticoH2 extends JpaRepository<SocioClubNautico
 	@Query(value = "SELECT * FROM SALIDAS WHERE FK_MATRICULA_EMBARCACION = :matricula", nativeQuery = true)
 	public List<SalidaRealizada> findAllSalidasByEmbarcacion(@Param("matricula") String matricula);
 	
-	//@Query("select )
-	//public UsuarioClubNautico findUsuario();
+//	@Query(value = "select * FROM SALIDAS WHERE DNI = :idusuario", nativeQuery = true)
+//	public SalidaRealizada findUsuario(@Param("idusuario") String dni);
 
 }

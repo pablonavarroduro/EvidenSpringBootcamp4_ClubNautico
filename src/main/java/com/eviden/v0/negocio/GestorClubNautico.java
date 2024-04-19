@@ -130,20 +130,21 @@ public class GestorClubNautico {
 	}
 	
 	@Transactional
-	public void updateSalida() {
+	public void updateSalida(int idsalida) {
 		
 	}
 	
 	@Transactional
-	public void deleteSalida() {
+	public void deleteSalida(int idsalida) {
 		
 	}
 	//gestor de usuarios	
 	
-	@Transactional
-	public void findUsuario(UsuarioClubNautico usr) {
-		
-	}
+//	@Transactional
+//	public UsuarioClubNautico findUsuario(String dni) {
+//		SalidaRealizada s = repo.findUsuario(dni);
+//		return s.getUsuario();
+//	}
 	
 	@Transactional
 	public void findAllUsuario() {

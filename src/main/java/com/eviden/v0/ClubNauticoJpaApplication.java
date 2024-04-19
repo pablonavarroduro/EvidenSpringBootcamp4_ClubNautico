@@ -97,7 +97,8 @@ public class ClubNauticoJpaApplication implements CommandLineRunner {
 			System.out.println(embarcacion.toString());
 		}
 		
-		
+//		UsuarioClubNautico usr = gestor.findUsuario("0000000X");
+//		System.out.println(usr.toString());
 		
 	}	
 	
