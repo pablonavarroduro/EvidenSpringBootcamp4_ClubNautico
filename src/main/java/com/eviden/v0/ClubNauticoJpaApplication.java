@@ -69,7 +69,6 @@ public class ClubNauticoJpaApplication implements CommandLineRunner {
 		for (SalidaRealizada salidaRealizada : listasal1) {
 			salidaRealizada.setEmbarcacion(emb1);
 		}
-		
 				
 		List<Embarcacion> listaEmb = new ArrayList<>();
 		listaEmb.add(emb1);
@@ -79,6 +78,9 @@ public class ClubNauticoJpaApplication implements CommandLineRunner {
 		socio1.setNombre("Pablo");
 		socio1.setPrimerApellido("Navarro");
 		socio1.setSegundoApellido("Duro");
+		
+		emb1.setSocio(socio1);
+		emb2.setSocio(socio1);
 		socio1.setBarcos_en_propiedad(listaEmb);
 		
 		gestor.createSocio(socio1);
@@ -87,7 +89,15 @@ public class ClubNauticoJpaApplication implements CommandLineRunner {
 		
 		for (SocioClubNautico socioClubNautico : lista_socios) {
 			System.out.println(socioClubNautico.toString());
+			
 		}
+		
+		List<Embarcacion> le = gestor.findAllEmbarcacion(lista_socios.get(0).getIdSocio());
+		for (Embarcacion embarcacion : le) {
+			System.out.println(embarcacion.toString());
+		}
+		
+		
 		
 	}	
 	

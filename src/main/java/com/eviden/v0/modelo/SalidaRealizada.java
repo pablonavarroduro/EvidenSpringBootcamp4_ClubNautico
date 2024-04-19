@@ -95,8 +95,6 @@ public class SalidaRealizada {
 	public String toString() {
 		return "SalidaRealizada [idSalida=" + idSalida + ", destino=" + destino + ", fecha_salida=" + fecha_salida
 				+ ", usuario=" + usuario.toString() + "]";
-	}
-	
-	
+	}	
 
 }

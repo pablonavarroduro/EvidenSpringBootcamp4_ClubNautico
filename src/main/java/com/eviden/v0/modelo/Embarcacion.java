@@ -6,6 +6,7 @@ import jakarta.annotation.Nonnull;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,7 +27,7 @@ public class Embarcacion {
 	private Integer numero_amarre;
 	private Double cuota;
 	
-	@OneToMany(mappedBy = "embarcacion", cascade=CascadeType.PERSIST)
+	@OneToMany(mappedBy = "embarcacion", cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
 	private List<SalidaRealizada> salidas;
 	@Nonnull
 	@ManyToOne
@@ -86,6 +87,14 @@ public class Embarcacion {
 
 	public void setSalidas(List<SalidaRealizada> salidas) {
 		this.salidas = salidas;
+	}
+	
+	public SocioClubNautico getSocio() {
+		return socio;
+	}
+
+	public void setSocio(SocioClubNautico socio) {
+		this.socio = socio;
 	}
 
 	@Override
